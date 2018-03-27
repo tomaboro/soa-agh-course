@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<computer_parts>
+    <part id="1">
+        <name>Monitor LCD</name>
+        <price>450</price>
+    </part>
+    <part id="2">
+        <name>Raspberry Pi</name>
+        <price>150</price>
+    </part>
+</computer_parts>
