@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Komis samochodowy</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            Ile jestes w stanie przeznaczyc miesiecznie na zakup ubrania?
+            <h:selectOneMenu id="selectQ1" value="#{sklep.q1}" >
+                <f:selectItem itemValue="mniej-100" itemLabel="mniej niz 100 zl"/>
+                <f:selectItem itemValue="100-500" itemLabel="100-500 zl"/>
+                <f:selectItem itemValue="500-1000" itemLabel="500-1000 zl"/>
+                <f:selectItem itemValue="wieciej-1000" itemLabel="wiecej niz 1000 zl"/>
+            </h:selectOneMenu>
+            Jak czesto dokonujesz zakupu ubrania?
+            <h:selectOneMenu id="selectQ2" value="#{sklep.q2}" >
+                <f:selectItem itemValue="dzien" itemLabel="codziennie"/>
+                <f:selectItem itemValue="tydzien" itemLabel="raz w tygodniu"/>
+                <f:selectItem itemValue="miesiac" itemLabel="raz w miesiacu"/>
+                <f:selectItem itemValue="rok" itemLabel="kilka razy w roku"/>
+            </h:selectOneMenu>
+            W jakich kolorach preferujesz ubrania?
+            <h:selectOneMenu id="selectQ3" value="#{sklep.q3}" >
+                <f:selectItem itemValue="jaskrawe" itemLabel="kolorowo-jaskrawe"/>
+                <f:selectItem itemValue="szare" itemLabel="stonowane w szarosciach"/>
+                <f:selectItem itemValue="czarne-biale" itemLabel="w czerni i bieli"/>
+                <f:selectItem itemValue="czarne" itemLabel="w samej czerni"/>
+            </h:selectOneMenu>
+            Jakiego rodzaju ubrania najchetniej kupujesz?
+            <h:selectManyCheckbox id="selectQ4" value="#{sklep.q4}" rendered="#{sklep.plec.equals('m')}">
+                <f:selectItems value="#{sklep.q4ans_male}"/>
+            </h:selectManyCheckbox>
+            <h:selectManyCheckbox id="selectQ41" value="#{sklep.q4}" rendered="#{sklep.plec.equals('f')}">
+                <f:selectItems value="#{sklep.q4ans_female}"/>
+            </h:selectManyCheckbox>
+            <h:outputText value="Kiedy ostatnio robiles u nas zakupy:" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="Kiedy ostatnio robilas u nas zakupy:" rendered="#{sklep.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ5" value="#{sklep.q5}">
+                <f:selectItem itemValue="wczoraj" itemLabel="wczoraj"/>
+                <f:selectItem itemValue="tydzien" itemLabel="w zeszlym tygodniu"/>
+                <f:selectItem itemValue="mieisac" itemLabel="w zeszlym miesiacu"/>
+                <f:selectItem itemValue="wiecej-miesiac" itemLabel="kilka miesiecy temu"/>
+                <f:selectItem itemValue="np" itemLabel="nie pamietam"/>
+            </h:selectOneMenu>
+            <h:outputText value="Czy jestes zadowolony z naszych pracownikow: " rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="Czy jestes zadowolona z naszych pracownikow: " rendered="#{sklep.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ6" value="#{sklep.q6}">
+                <f:selectItem itemValue="1" itemLabel="tak"/>
+                <f:selectItem itemValue="2" itemLabel="raczej tak"/>
+                <f:selectItem itemValue="3" itemLabel="raczej nie"/>
+                <f:selectItem itemValue="4" itemLabel="nie"/>
+                <f:selectItem itemValue="0" itemLabel="nie wiem"/>
+            </h:selectOneMenu>
+            <h:outputText value="Czy jestes zadowolony z zakupu: " rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="Czy jestes zadowolona z zakupu: " rendered="#{sklep.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ7" value="#{sklep.q7}">
+                <f:selectItem itemValue="1" itemLabel="tak"/>
+                <f:selectItem itemValue="2" itemLabel="raczej tak"/>
+                <f:selectItem itemValue="3" itemLabel="raczej nie"/>
+                <f:selectItem itemValue="4" itemLabel="nie"/>
+                <f:selectItem itemValue="0" itemLabel="nie wiem"/>
+            </h:selectOneMenu>
+            Dodatkowe uwagi:
+            <h:inputTextarea id="inputQ8" value="#{sklep.q8}"/>
+        </h:panelGrid>
+        <h:commandButton id="submitButton" value="Wyslij" type="submit" action="index3"/>
+    </h:form>
+</h:body>
+</html>

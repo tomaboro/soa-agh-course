@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Komis samochodowy</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            Imie:
+            <h:outputText value="#{sklep.imie}"/>
+            Mail:
+            <h:outputText value="#{sklep.mail}"/>
+            Wiek:
+            <h:outputText value="#{sklep.wiek}"/>
+            Plec:
+            <h:outputText value="mezczyzna" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="kobieta" rendered="#{sklep.plec.equals('f')}"/>
+            Wyksztalcenie:
+            <h:outputText value="#{sklep.wyksztalcenie}"/>
+            Wzrost:
+            <h:outputText value="#{sklep.wzrost}"/>
+            <h:outputText value="obwod biustu" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="#{sklep.biust}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="wielkosc miseczki" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="#{sklep.miseczka}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Obwod w talii" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="#{sklep.talia}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Wielkosc biodra" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="#{sklep.biodra}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="dlugosc nogi" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="#{sklep.nogi}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="obwod klatki" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="#{sklep.klatka}" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="obwod w pasie" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="#{sklep.pas}" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="dlugosc nogi" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="#{sklep.nogi}" rendered="#{sklep.plec.equals('m')}"/>
+            Q1:
+            <h:outputText value="#{sklep.q1}"/>
+            Q2:
+            <h:outputText value="#{sklep.q2}"/>
+            Q3:
+            <h:outputText value="#{sklep.q3}"/>
+            Q4:
+            <h:outputText value="#{sklep.q4}"/>
+            Q5:
+            <h:outputText value="#{sklep.q5}"/>
+            Q6:
+            <h:outputText value="#{sklep.q6}"/>
+            Q7:
+            <h:outputText value="#{sklep.q7}"/>
+            Q8:
+            <h:outputText value="#{sklep.q8}"/>
+        </h:panelGrid>
+    </h:form>
+    <h:graphicImage value="#{reklamaSession.path = reklama.imgPath}">
+        <f:ajax event="click" listener="#{reklama.onClick(reklamaSession.path)}"/>
+    </h:graphicImage>
+</h:body>
+</html>

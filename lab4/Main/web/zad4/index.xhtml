@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Komis samochodowy</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            Imie:
+            <h:inputText id="imieInput" value="#{sklep.imie}" required="true"/>
+            e-mail:
+            <h:inputText id="mailInput" value="#{sklep.mail}" required="true"/>
+            wiek:
+            <h:inputText id="wiekInput" value="#{sklep.wiek}">
+                <f:validateLongRange maximum="100" minimum="10"/>
+            </h:inputText>
+            Plec:
+            <h:selectOneRadio id="plecSelect" value="#{sklep.plec}" required="true">
+                <f:selectItem itemValue="m" itemLabel="mezyczyzna"/>
+                <f:selectItem itemValue="f" itemLabel="kobieta"/>
+                <f:ajax event="change" execute="plecSelect" render="@form"/>
+            </h:selectOneRadio>
+            Wyksztalcenie:
+            <h:selectOneRadio id="wyksztalcenieSelect" value="#{sklep.wyksztalcenie}">
+                <f:selectItem itemValue="podstawowe" itemLabel="podstawowe"/>
+                <f:selectItem itemValue="zawodowe" itemLabel="zawodowe"/>
+                <f:selectItem itemValue="wyzsze" itemLabel="wyzsze"/>
+            </h:selectOneRadio>
+            Wzrost:
+            <h:inputText id="wzrostInput" value="#{sklep.wzrost}">
+                <f:validateLongRange minimum="150" maximum="185" disabled="#{sklep.plec.equals('m')}"/>
+                <f:validateLongRange minimum="165" maximum="200" disabled="#{sklep.plec.equals('f')}"/>
+            </h:inputText>
+            <h:outputText value="Obwod biustu:" rendered="#{sklep.plec.equals('f')}" />
+            <h:inputText id="biustInput" value="#{sklep.biust}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Rozmiar miseczki:" rendered="#{sklep.plec.equals('f')}" />
+            <h:inputText id="miseczkaInput" value="#{sklep.miseczka}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Rozmiar biodra:" rendered="#{sklep.plec.equals('f')}" />
+            <h:inputText id="biodraInput" value="#{sklep.biodra}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Obwod w talii:" rendered="#{sklep.plec.equals('f')}" />
+            <h:inputText id="taliaInput" value="#{sklep.talia}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Dlugosc nogi:" rendered="#{sklep.plec.equals('f')}" />
+            <h:inputText id="nogaInput" value="#{sklep.nogi}" rendered="#{sklep.plec.equals('f')}"/>
+            <h:outputText value="Obwod klatki:" rendered="#{sklep.plec.equals('m')}" />
+            <h:inputText id="klatkaInput" value="#{sklep.klatka}" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="Obwod w pasie:" rendered="#{sklep.plec.equals('m')}" />
+            <h:inputText id="pasInput" value="#{sklep.pas}" rendered="#{sklep.plec.equals('m')}"/>
+            <h:outputText value="Długosc nogi:" rendered="#{sklep.plec.equals('m')}" />
+            <h:inputText id="nogiInput1" value="#{sklep.nogi}" rendered="#{sklep.plec.equals('m')}"/>
+        </h:panelGrid>
+        <h:commandButton id="submitButton" value="Wyslij" type="submit" action="index2"/>
+    </h:form>
+</h:body>
+</html>

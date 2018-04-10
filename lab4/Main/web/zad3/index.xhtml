@@ -1,0 +1,92 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Komis samochodowy</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            Marka:
+            <h:selectOneMenu id="selectMarka" value="#{samochod.marka}">
+                <f:selectItems value="#{samochod.marki}"/>
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="selectMarka"
+                        render="valid"/>
+                <f:ajax
+                        event="change"
+                        execute="selectMarka"
+                        render="selectModel"/>
+            </h:selectOneMenu>
+            Model:
+            <h:selectOneMenu id="selectModel" value="#{samochod.model}">
+                <f:selectItems value="#{samochod.modele}"/>
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="selectModel"
+                        render="valid"/>
+            </h:selectOneMenu>
+            Typ Silnika:
+            <h:selectOneMenu id="selectSilnik" value="#{samochod.typSilnika}">
+                <f:selectItems value="#{samochod.silniki}"/>
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="selectSilnik"
+                        render="valid"/>
+            </h:selectOneMenu>
+            Minimalna cena:
+            <h:inputText id="inputMin" value="#{samochod.minCena}">
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="inputMin"
+                        render="valid"/>
+            </h:inputText>
+            Maxymalna cena:
+            <h:inputText id="inputMax" value="#{samochod.maxCena}">
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="inputMax"
+                        render="valid"/>
+            </h:inputText>
+            Imie i nazwisko:
+            <h:inputText id="inputDane" value="#{samochod.daneOsobowe}">
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="inputDane"
+                        render="valid"/>
+            </h:inputText>
+            Numer telefonu:
+            <h:inputText id="inputNumer" value="#{samochod.numerTelefonu}">
+                <f:ajax
+                        event="change"
+                        listener="#{samochod.validateForm}"
+                        execute="inputNumer"
+                        render="valid"/>
+            </h:inputText>
+        </h:panelGrid>
+        <h:commandButton id="valid" value="Szukaj" disabled="#{!samochod.formValid}">
+            <f:ajax event="click" render="wyniki" listener="#{samochod.evaluate}"/>
+            <f:ajax event="click" render="test" listener="#{samochod.evaluate}"/>
+        </h:commandButton>
+        <h:commandButton id="clear" value="Wyczyść" action="#{samochod.resetValues}" onchange="submit()"/>
+    </h:form>
+
+    <h:dataTable id="wyniki" value = "#{samochod.wyniki}" var = "oferta">
+        <h:column>
+            <f:facet name = "header">Znalezione oferty</f:facet>
+            <h:outputText value="#{oferta}"/>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
