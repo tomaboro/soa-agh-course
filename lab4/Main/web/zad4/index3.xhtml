@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
     <title>Komis samochodowy</title>
 </h:head>
@@ -47,7 +47,7 @@
             Q3:
             <h:outputText value="#{sklep.q3}"/>
             Q4:
-            <h:outputText value="#{sklep.q4}"/>
+            <h:outputText value="#{sklep.getNiceQ4()}"/>
             Q5:
             <h:outputText value="#{sklep.q5}"/>
             Q6:
@@ -58,7 +58,8 @@
             <h:outputText value="#{sklep.q8}"/>
         </h:panelGrid>
     </h:form>
-    <h:graphicImage value="#{reklamaSession.path = reklama.imgPath}">
+    <c:set value="#{reklama.imgPath}" target="#{reklamaSession}" property="path" />
+    <h:graphicImage value="#{reklamaSession.path}" width="200px">
         <f:ajax event="click" listener="#{reklama.onClick(reklamaSession.path)}"/>
     </h:graphicImage>
 </h:body>

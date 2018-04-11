@@ -16,7 +16,7 @@ public class Reklama {
         }
     }
 
-    private List<String> paths = Arrays.asList("https://cdn.pixabay.com/photo/2017/03/12/20/07/free-linger-lake-2137973_960_720.jpg","https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg","https://images.pexels.com/photos/14621/Warsaw-at-night-free-license-CC0.jpg?cs=srgb&dl=architecture-buildings-business-14621.jpg&fm=jpg");
+    private List<String> paths = Arrays.asList("https://i.pinimg.com/originals/51/90/f2/5190f2e019af3c5e83ba04a23f856fa7.jpg","https://analyzemedia.files.wordpress.com/2013/10/m_pepsi_versiontypo_fullldef_0636.jpg?w=1200&h=800&crop=1","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQlB7KYzqf7qnbrOayVGBadNWjipPLyqwnG8yfUjS2bupJPCNs");
     public String imgPath = paths.get(0);
 
     public HashMap<String, Integer> getClicks() {

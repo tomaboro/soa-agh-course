@@ -1,5 +1,6 @@
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import java.util.Arrays;
 
 @ManagedBean()
 @SessionScoped()
@@ -8,7 +9,7 @@ public class Sklep {
     private String imie;
     private String mail;
     private int wiek;
-    private String plec;
+    private String plec ="m";
     private String wyksztalcenie;
     private int wzrost;
 
@@ -35,6 +36,10 @@ public class Sklep {
 
     private String[] q4ans_female = {"garsonki","bluzki","spódniczki","spodnie"};
     private String[] q4ans_male = {"spodnie","spodenki","garnitury","koszule","krawaty"};
+
+    public String getNiceQ4() {
+        return Arrays.toString(q4);
+    }
 
     public String[] getQ4ans_female() {
         return q4ans_female;

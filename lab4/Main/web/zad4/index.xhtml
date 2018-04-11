@@ -11,20 +11,22 @@
 <h:body>
     <h:form>
         <h:panelGrid columns="2">
-            Imie:
-            <h:inputText id="imieInput" value="#{sklep.imie}" required="true"/>
-            e-mail:
-            <h:inputText id="mailInput" value="#{sklep.mail}" required="true"/>
-            wiek:
-            <h:inputText id="wiekInput" value="#{sklep.wiek}">
-                <f:validateLongRange maximum="100" minimum="10"/>
-            </h:inputText>
             Plec:
             <h:selectOneRadio id="plecSelect" value="#{sklep.plec}" required="true">
                 <f:selectItem itemValue="m" itemLabel="mezyczyzna"/>
                 <f:selectItem itemValue="f" itemLabel="kobieta"/>
-                <f:ajax event="change" execute="plecSelect" render="@form"/>
+                <f:ajax event="change" execute="plecSelect" render="@form" />
             </h:selectOneRadio>
+            Imie:
+            <h:inputText id="imieInput" value="#{sklep.imie}" required="true" immediate="true"/>
+            e-mail:
+            <h:inputText id="mailInput" value="#{sklep.mail}" required="true" immediate="true">
+                    <f:validator validatorId="mailValidator" />
+            </h:inputText>
+            wiek:
+            <h:inputText id="wiekInput" value="#{sklep.wiek}">
+                <f:validateLongRange maximum="100" minimum="10"/>
+            </h:inputText>
             Wyksztalcenie:
             <h:selectOneRadio id="wyksztalcenieSelect" value="#{sklep.wyksztalcenie}">
                 <f:selectItem itemValue="podstawowe" itemLabel="podstawowe"/>
@@ -32,7 +34,7 @@
                 <f:selectItem itemValue="wyzsze" itemLabel="wyzsze"/>
             </h:selectOneRadio>
             Wzrost:
-            <h:inputText id="wzrostInput" value="#{sklep.wzrost}">
+            <h:inputText id="wzrostInput" value="#{sklep.wzrost}" immediate="true">
                 <f:validateLongRange minimum="150" maximum="185" disabled="#{sklep.plec.equals('m')}"/>
                 <f:validateLongRange minimum="165" maximum="200" disabled="#{sklep.plec.equals('f')}"/>
             </h:inputText>
@@ -55,5 +57,13 @@
         </h:panelGrid>
         <h:commandButton id="submitButton" value="Wyslij" type="submit" action="index2"/>
     </h:form>
+
+    <h:panelGrid columns="1">
+        <h:message for = "imieInput" style = "color:red" />
+        <h:message for= "mailInput" style="color:red"/>
+        <h:message for= "wzrostInput" style="color:red" />
+        <h:message for= "wiekInput" style="color:red" />
+    </h:panelGrid>
+
 </h:body>
 </html>
