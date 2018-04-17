@@ -1,0 +1,22 @@
+<bookList>
+	<book>
+		<ISBN>1</ISBN>
+		<name>Super ksiazka</name>
+		<author>Tomasz Borowicz</author>
+	</book>
+	<book>
+		<ISBN>2</ISBN>
+		<name>Ciekawa ksiazka</name>
+		<author>Izabela Poinska</author>
+	</book>
+	<book>
+		<ISBN>3</ISBN>
+		<name>Ksiazka o krzeslach</name>
+		<author>Krzysztof Swider</author>
+	</book>
+	<book>
+		<ISBN>5</ISBN>
+		<name>Super ksiazka 2</name>
+		<author>Tomasz Borowicz</author>
+	</book>
+</bookList>

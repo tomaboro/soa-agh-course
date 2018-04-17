@@ -6,13 +6,13 @@ import java.util.logging.Logger;
 
 public class RemoteEJBClient {
     private final static java.util.logging.Logger logger = Logger.getLogger(RemoteEJBClient.class.getName());
-    private final static Hashtable jndiProperties = new Hashtable();
+    private final static Hashtable props = new Hashtable();
     public static void main(String[] args) throws Exception {
         testRemoteEJB();
     }
     private static void testRemoteEJB() throws NamingException {
-        jndiProperties.put(Context.URL_PKG_PREFIXES,
-                "org.jboss.ejb.client.naming");
+        props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+        props.put(Context.INITIAL_CONTEXT_FACTORY,"org.jboss.naming.NamingContextFactory");
         final TheatreInfo info = lookupTheatreInfoEJB();
         final TheatreBooker book = lookupTheatreBookerEJB();
         String command = "";
@@ -59,11 +59,11 @@ public class RemoteEJBClient {
     }
 
     private static TheatreInfo lookupTheatreInfoEJB() throws NamingException {
-        final Context context = new InitialContext(jndiProperties);
+        final Context context = new InitialContext(props);
         return (TheatreInfo) context.lookup("ejb:/ticket-agency-ejb//TheatreInfoBean!TheatreInfo");
     }
     private static TheatreBooker lookupTheatreBookerEJB() throws NamingException {
-        final Context context = new InitialContext(jndiProperties);
-        return (TheatreBooker) context.lookup("ejb/ticket-agency-ejb/TheatreBookerBean!TheatreBooker?stateful");
+        final Context context = new InitialContext(props);
+        return (TheatreBooker) context.lookup("ejb:/ticket-agency-ejb/TheatreBookerBean!TheatreBooker?stateful");
     }
 }
