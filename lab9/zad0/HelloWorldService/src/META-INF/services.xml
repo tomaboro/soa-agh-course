@@ -1,0 +1,8 @@
+<serviceGroup>
+    <service name="HelloWorld">
+        <parameter name="ServiceClass" locked="false">example.HelloWorld</parameter>
+        <operation name="*">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </operation>
+    </service>
+</serviceGroup>

@@ -1,0 +1,8 @@
+<serviceGroup>
+    <service name="TextAnalyzerImpl">
+        <parameter name="ServiceClass" locked="false">com.motek.soa.TextAnalyzerImpl</parameter>
+        <operation name="*">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>
+        </operation>
+    </service>
+</serviceGroup>

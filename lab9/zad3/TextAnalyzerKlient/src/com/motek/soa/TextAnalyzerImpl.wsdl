@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soa.motek.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="TextAnalyzerImplService" targetNamespace="http://soa.motek.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soa.motek.com/" targetNamespace="http://soa.motek.com/" version="1.0">
+
+  <xs:element name="countSpaces" type="tns:countSpaces"/>
+
+  <xs:element name="countSpacesResponse" type="tns:countSpacesResponse"/>
+
+  <xs:complexType name="countSpaces">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="countSpacesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:report"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="report">
+    <xs:sequence>
+      <xs:element name="bigCharacters" type="xs:int"/>
+      <xs:element name="characters" type="xs:int"/>
+      <xs:element name="smallCharacters" type="xs:int"/>
+      <xs:element name="spaces" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="countSpacesResponse">
+    <wsdl:part element="tns:countSpacesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="countSpaces">
+    <wsdl:part element="tns:countSpaces" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TextAnalyzer">
+    <wsdl:operation name="countSpaces">
+      <wsdl:input message="tns:countSpaces" name="countSpaces">
+    </wsdl:input>
+      <wsdl:output message="tns:countSpacesResponse" name="countSpacesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TextAnalyzerImplServiceSoapBinding" type="tns:TextAnalyzer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="countSpaces">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="countSpaces">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="countSpacesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TextAnalyzerImplService">
+    <wsdl:port binding="tns:TextAnalyzerImplServiceSoapBinding" name="TextAnalyzerImplPort">
+      <soap:address location="http://localhost:8080/TextAnalyzer_war_exploded/TextAnalyzerImpl"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

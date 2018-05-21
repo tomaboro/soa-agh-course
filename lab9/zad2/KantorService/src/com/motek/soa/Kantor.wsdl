@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://soa.motek.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://soa.motek.com/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" targetNamespace="http://soa.motek.com">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soa.motek.com/xsd">
+            <xs:complexType name="UnsupportedCurrencyException">
+                <xs:sequence/>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://soa.motek.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://soa.motek.com">
+            <xs:import namespace="http://soa.motek.com/xsd"/>
+            <xs:element name="KantorUnsupportedCurrencyException">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="UnsupportedCurrencyException" nillable="true" type="ax22:UnsupportedCurrencyException"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zamien">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="waluta" nillable="true" type="xs:string"/>
+                        <xs:element name="kwota" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="zamienResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="return" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="zamienRequest">
+        <wsdl:part name="parameters" element="ns:zamien"/>
+    </wsdl:message>
+    <wsdl:message name="zamienResponse">
+        <wsdl:part name="parameters" element="ns:zamienResponse"/>
+    </wsdl:message>
+    <wsdl:message name="KantorUnsupportedCurrencyException">
+        <wsdl:part name="parameters" element="ns:KantorUnsupportedCurrencyException"/>
+    </wsdl:message>
+    <wsdl:portType name="KantorPortType">
+        <wsdl:operation name="zamien">
+            <wsdl:input message="ns:zamienRequest" wsaw:Action="urn:zamien"/>
+            <wsdl:output message="ns:zamienResponse" wsaw:Action="urn:zamienResponse"/>
+            <wsdl:fault message="ns:KantorUnsupportedCurrencyException" name="KantorUnsupportedCurrencyException" wsaw:Action="urn:zamienKantorUnsupportedCurrencyException"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="KantorSoap11Binding" type="ns:KantorPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="zamien">
+            <soap:operation soapAction="urn:zamien" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="KantorUnsupportedCurrencyException">
+                <soap:fault use="literal" name="KantorUnsupportedCurrencyException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="KantorSoap12Binding" type="ns:KantorPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="zamien">
+            <soap12:operation soapAction="urn:zamien" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="KantorUnsupportedCurrencyException">
+                <soap12:fault use="literal" name="KantorUnsupportedCurrencyException"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="KantorHttpBinding" type="ns:KantorPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="zamien">
+            <http:operation location="zamien"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="KantorUnsupportedCurrencyException"/>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Kantor">
+        <wsdl:port name="KantorHttpSoap11Endpoint" binding="ns:KantorSoap11Binding">
+            <soap:address location="http://localhost:8080//services/com/motek/soa/Kantor"/>
+        </wsdl:port>
+        <wsdl:port name="KantorHttpSoap12Endpoint" binding="ns:KantorSoap12Binding">
+            <soap12:address location="http://localhost:8080//services/com/motek/soa/Kantor"/>
+        </wsdl:port>
+        <wsdl:port name="KantorHttpEndpoint" binding="ns:KantorHttpBinding">
+            <http:address location="http://localhost:8080//services/com/motek/soa/Kantor"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
